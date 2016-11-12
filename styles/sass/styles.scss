@@ -1,0 +1,21 @@
+$grid-cell-class : 'cell';
+
+.#{$grid-cell-class}{
+	&-12{
+		width : 100%;
+	}
+	&-8{
+		width : 66.67%;
+	}
+	&-4{
+		width : 33.33%;
+	}
+}
+
+.div-table{
+	display: table;
+}
+
+.div-cell{
+	display: table-cell;
+}
