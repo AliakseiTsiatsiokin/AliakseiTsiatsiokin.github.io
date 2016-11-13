@@ -1,4 +1,10 @@
 $grid-cell-class : 'cell';
+$white : #ffffff;
+$background : #fafafa;
+
+body{
+	background-color : $background;
+}
 
 .#{$grid-cell-class}{
 	&-12{
@@ -12,10 +18,20 @@ $grid-cell-class : 'cell';
 	}
 }
 
+.theme{
+	&-white{
+		background-color : $white;
+	}
+}
+
 .div-table{
 	display: table;
 }
 
 .div-cell{
 	display: table-cell;
+}
+
+.panel{
+	margin : 16px;
 }
