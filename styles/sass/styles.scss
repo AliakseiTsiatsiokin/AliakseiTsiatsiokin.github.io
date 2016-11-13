@@ -35,3 +35,27 @@ body{
 .panel{
 	margin : 16px;
 }
+
+.link-learn-more{
+	display : block;
+}
+
+.section-image{
+	max-width : 300px;
+	max-height : 200px;
+}
+
+@mixin reset{
+	margin : 0;
+	text-decoration : none;
+}
+
+@for $num from 1 through 6 {
+	h#{$num} {  
+		@include reset;
+	}
+}
+
+a{
+	@include reset;
+}

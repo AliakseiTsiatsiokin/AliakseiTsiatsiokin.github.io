@@ -20,4 +20,39 @@ body {
 .panel {
   margin: 16px; }
 
+.link-learn-more {
+  display: block; }
+
+.section-image {
+  max-width: 300px;
+  max-height: 200px; }
+
+h1 {
+  margin: 0;
+  text-decoration: none; }
+
+h2 {
+  margin: 0;
+  text-decoration: none; }
+
+h3 {
+  margin: 0;
+  text-decoration: none; }
+
+h4 {
+  margin: 0;
+  text-decoration: none; }
+
+h5 {
+  margin: 0;
+  text-decoration: none; }
+
+h6 {
+  margin: 0;
+  text-decoration: none; }
+
+a {
+  margin: 0;
+  text-decoration: none; }
+
 /*# sourceMappingURL=main.css.map */
