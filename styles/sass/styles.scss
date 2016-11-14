@@ -85,3 +85,8 @@ a, ul{
 		}
 	}
 }
+
+.spinner{
+    transition-duration: 2s;
+	transform: rotateZ(360deg);
+}

@@ -81,4 +81,8 @@ a, ul {
         color: #ffffff;
         font-weight: 700; }
 
+.spinner {
+  transition-duration: 2s;
+  transform: rotateZ(360deg); }
+
 /*# sourceMappingURL=main.css.map */

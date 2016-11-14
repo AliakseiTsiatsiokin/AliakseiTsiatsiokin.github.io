@@ -47,7 +47,7 @@ class Loader{
 	}
 	handleCategoryChange(){
 	
-		this.sectionTemplate.clearContainer();
+		this.sectionTemplate.showSpinner();
 	
 		switch(this.private.category){
 			case 'all' : {
@@ -61,6 +61,9 @@ class Loader{
 		}
 	}
 	fetchNews(category){
+	
+		this.sectionTemplate.showSpinner();
+	
 		fetch(new Request(this.generateUrl(category)), {
 			method : 'GET',
 			mode : 'cors'
@@ -68,6 +71,7 @@ class Loader{
 		.then( response => response.json() )
 		.then( responseObj => {
 			let articles = responseObj.articles;
+			this.sectionTemplate.clearContainer();
 			for(let article of articles){
 				this.sectionTemplate.populateTemplate(
 					Adapter.spliceEmptyProperties(article)

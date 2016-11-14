@@ -12,6 +12,11 @@ class Template{
 			prop.innerHTML = '';
 		}
 	}
+	showSpinner(){
+		for(let prop of this.target){
+			prop.innerHTML = '<img class="spinner" src="./spinner.gif" />';
+		}
+	}
 }
 
 class NewsSectionTemplate extends Template{
