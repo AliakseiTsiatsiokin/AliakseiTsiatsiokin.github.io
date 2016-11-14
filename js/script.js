@@ -8,5 +8,9 @@
 			loader.private.category = target.getAttribute('data-cat');
 		}
 	});
+
+	document.getElementById('search').addEventListener('change', (event) => {
+		loader.private.source = event.target.value;
+	});
 	
 })();

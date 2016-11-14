@@ -2,6 +2,7 @@ $grid-cell-class : 'cell';
 $white : #ffffff;
 $turquoise : #80ffe5;
 $background : #fafafa;
+$navy : #2c70a9;
 
 body{
 	background-color : $background;
@@ -30,14 +31,23 @@ body{
 }
 
 .div-cell{
+	vertical-align: top;
 	display: table-cell;
 }
 
 .panel{
+	padding : 16px;
 	margin : 16px;
 }
 
+.panel-header,
+.panel-date,
+.panel-title{
+	margin : 8px 0;
+}
+
 .link-learn-more{
+	color : $navy;
 	display : block;
 }
 
@@ -71,6 +81,7 @@ a, ul{
 		display : table-cell;
 		text-align : center;
 		a{
+			color : $navy;
 			text-transform : uppercase;
 			display : block;
 			padding : 16px;

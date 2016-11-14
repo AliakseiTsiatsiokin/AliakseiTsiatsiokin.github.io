@@ -15,12 +15,18 @@ body {
   display: table; }
 
 .div-cell {
+  vertical-align: top;
   display: table-cell; }
 
 .panel {
+  padding : 16px;
   margin: 16px; }
 
+.panel-header,.panel-date,.panel-title{
+  margin : 8px 0;  }
+
 .link-learn-more {
+  color: #2c70a9;
   display: block; }
 
 .section-image {
@@ -71,6 +77,7 @@ a, ul {
     display: table-cell;
     text-align: center; }
     .nav-list li a {
+      color: #2c70a9;
       text-transform: uppercase;
       display: block;
       padding: 16px; }

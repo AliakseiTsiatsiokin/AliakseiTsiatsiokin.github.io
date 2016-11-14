@@ -13,13 +13,23 @@ class Loader{
 							for(let category of allowedValues){
 								if(value === category){
 									target[prop] = value;
-									self.handleCategoryChange();
+									self.handleParamChange();
 								}
 							}
 						
 						}
 						return target[prop];
 					}
+					case 'source' : {
+						let prevVal = target[prop];
+						if(value !== prevVal){
+							target[prop] = value;
+							if(target.category !== undefined){
+								self.handleParamChange();
+							}
+						}
+						return target[prop];
+					}	
 					default : {
 						if(target[prop] === undefined){
 							target[prop] = value;
@@ -38,15 +48,16 @@ class Loader{
 		
 		this.sectionTemplate = new NewsSectionTemplate('#newsContainer');
 		this.articles = [];
-		
+
+		this.private.source = 'hacker-news';
 		this.private.apiKey = '6aa9fae56836443c8046fb41032ea9cb';
 		this.private.category = 'top';
 	}
 	generateUrl(category){
-		return `https://newsapi.org/v1/articles?source=hacker-news&sortBy=
+		return `https://newsapi.org/v1/articles?source=${this.private.source}&sortBy=
 			${category ? category : this.private.category}&apiKey=${this.private.apiKey}`;
 	}
-	handleCategoryChange(){
+	handleParamChange(){
 	
 		this.sectionTemplate.showSpinner();
 		
@@ -56,7 +67,6 @@ class Loader{
 			case 'all' : {
 				this.fetchNews('top');
 				this.fetchNews('latest', this.setResponse);
-				
 				break;
 			}
 			default : {
@@ -74,9 +84,15 @@ class Loader{
 		})
 		.then( response => response.json() )
 		.then( responseObj => {
-			this.articles = [...this.articles, ...Adapter.parseArticlesResponse(responseObj)];
-			if(callback){
-				callback.call(this, ...callbackParams);
+			if(responseObj.status === 'error'){
+				this.sectionTemplate.clearContainer()
+				this.sectionTemplate.pasteError(responseObj.message);
+				this.sectionTemplate.render();
+			}else{
+				this.articles = [...this.articles, ...Adapter.parseArticlesResponse(responseObj)];
+				if(callback){
+					callback.call(this, ...callbackParams);
+				}
 			}
 		})
 		.catch( err => console.log(err) );
