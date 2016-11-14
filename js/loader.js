@@ -37,7 +37,8 @@ class Loader{
 		});
 		
 		this.sectionTemplate = new NewsSectionTemplate('#newsContainer');
-	
+		this.articles = [];
+		
 		this.private.apiKey = '6aa9fae56836443c8046fb41032ea9cb';
 		this.private.category = 'top';
 	}
@@ -48,19 +49,22 @@ class Loader{
 	handleCategoryChange(){
 	
 		this.sectionTemplate.showSpinner();
+		
+		this.articles = [];
 	
 		switch(this.private.category){
 			case 'all' : {
 				this.fetchNews('top');
-				this.fetchNews('latest');
+				this.fetchNews('latest', this.setResponse);
+				
 				break;
 			}
 			default : {
-				this.fetchNews();
+				this.fetchNews(null, this.setResponse);
 			}
 		}
 	}
-	fetchNews(category){
+	fetchNews(category, callback, ...callbackParams){
 	
 		this.sectionTemplate.showSpinner();
 	
@@ -70,15 +74,20 @@ class Loader{
 		})
 		.then( response => response.json() )
 		.then( responseObj => {
-			let articles = responseObj.articles;
-			this.sectionTemplate.clearContainer();
-			for(let article of articles){
-				this.sectionTemplate.populateTemplate(
-					Adapter.spliceEmptyProperties(article)
-				);
-				this.sectionTemplate.render();
+			this.articles = [...this.articles, ...Adapter.parseArticlesResponse(responseObj)];
+			if(callback){
+				callback.call(this, ...callbackParams);
 			}
 		})
 		.catch( err => console.log(err) );
+	}
+	setResponse(){
+		this.sectionTemplate.clearContainer();
+		for(let article of this.articles){
+			this.sectionTemplate.populateTemplate(
+				Adapter.spliceEmptyProperties(article)
+			);
+			this.sectionTemplate.render();
+		}
 	}
 }

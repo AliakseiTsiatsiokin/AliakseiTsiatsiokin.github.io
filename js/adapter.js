@@ -20,4 +20,7 @@ class Adapter{
 		
 		return splicedObj;
 	}
+	static parseArticlesResponse(response){
+		return response.articles;
+	}
 }
