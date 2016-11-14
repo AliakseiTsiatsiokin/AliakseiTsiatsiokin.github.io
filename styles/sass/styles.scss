@@ -1,5 +1,6 @@
 $grid-cell-class : 'cell';
 $white : #ffffff;
+$turquoise : #80ffe5;
 $background : #fafafa;
 
 body{
@@ -48,6 +49,7 @@ body{
 @mixin reset{
 	margin : 0;
 	text-decoration : none;
+	list-style : none;
 }
 
 @for $num from 1 through 6 {
@@ -56,6 +58,30 @@ body{
 	}
 }
 
-a{
+a, ul{
 	@include reset;
+}
+
+.nav-list{
+	display : table;
+	width : 100%;
+	table-layout : fixed;
+	padding : 0;
+	li{
+		display : table-cell;
+		text-align : center;
+		a{
+			text-transform : uppercase;
+			display : block;
+			padding : 16px;
+		}
+		&:hover{
+			background-color : $turquoise;
+			cursor : pointer;
+			a{
+				color : $white;
+				font-weight : 700;
+			}
+		}
+	}
 }

@@ -7,6 +7,11 @@ class Template{
 			prop.innerHTML += markup;
 		}
 	}
+	clearContainer(){
+		for(let prop of this.target){
+			prop.innerHTML = '';
+		}
+	}
 }
 
 class NewsSectionTemplate extends Template{

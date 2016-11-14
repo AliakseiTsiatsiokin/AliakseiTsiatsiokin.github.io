@@ -29,30 +29,56 @@ body {
 
 h1 {
   margin: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  list-style: none; }
 
 h2 {
   margin: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  list-style: none; }
 
 h3 {
   margin: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  list-style: none; }
 
 h4 {
   margin: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  list-style: none; }
 
 h5 {
   margin: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  list-style: none; }
 
 h6 {
   margin: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  list-style: none; }
 
-a {
+a, ul {
   margin: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  list-style: none; }
+
+.nav-list {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  padding: 0; }
+  .nav-list li {
+    display: table-cell;
+    text-align: center; }
+    .nav-list li a {
+      text-transform: uppercase;
+      display: block;
+      padding: 16px; }
+    .nav-list li:hover {
+      background-color: #80ffe5;
+      cursor: pointer; }
+      .nav-list li:hover a {
+        color: #ffffff;
+        font-weight: 700; }
 
 /*# sourceMappingURL=main.css.map */
