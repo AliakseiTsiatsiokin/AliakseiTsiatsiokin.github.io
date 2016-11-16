@@ -14,12 +14,6 @@ class Template{
 		}
 		return this;
 	}
-	showSpinner(){
-		for(let prop of this.target){
-			prop.innerHTML = `<img class="spinner" src="./spinner.gif" />`;
-		}
-		return this;
-	}
 	pasteError(errorMessage){
 		this.markup += `<section><p>${errorMessage}</p></section>`;
 		return this;
@@ -35,14 +29,15 @@ class NewsSectionTemplate extends Template{
 		publishedAt = 'No publish date',
 		title = 'Untitled',
 		description = 'No description provided',
+		category,
 		urlToImage,
 		url
 	} = {}){
-		this.markup = `<section class="panel theme-white">
-					<h5 class="panel-header">${author}</h5>
+		this.markup = `<section class="panel theme-white allCategory ${category}Category">
+					<h5 class="panel-header no-margin-top">${author}</h5>
 					<small class="panel-date">${publishedAt}</small>
 					<h3 class="panel-title">${title}</h3>
-					<p>${description}</p>
+					<p>${description.length <= 100 ? description : `${description.slice(0, 100)}...`}</p>
 					${urlToImage ? `<img class="section-image" src=${urlToImage} />` : ``}
 					${url ? `<a class="link-learn-more" href=${url} target="_blank">Learn more...</a>` : ``}
 				</section>`;

@@ -20,7 +20,16 @@ class Adapter{
 		
 		return splicedObj;
 	}
-	static parseArticlesResponse(response){
-		return response.articles;
+	static parseArticlesResponse(response, category){
+		let articles = response.articles;
+		
+		if(articles === undefined){
+			return [];
+		}
+		
+		for(let article of articles){
+			article.category = category;
+		}
+		return articles;
 	}
 }

@@ -32,18 +32,22 @@ body{
 
 .div-cell{
 	vertical-align: top;
-	display: table-cell;
+	display: table-row;
 }
 
 .panel{
-	padding : 16px;
-	margin : 16px;
+	padding : 1em;
+	margin : 1em;
+}
+
+body *.no-margin-top{
+	margin-top : 0;
 }
 
 .panel-header,
 .panel-date,
 .panel-title{
-	margin : 8px 0;
+	margin : .5em 0;
 }
 
 .link-learn-more{
@@ -52,8 +56,8 @@ body{
 }
 
 .section-image{
-	max-width : 300px;
-	max-height : 200px;
+	max-width : 20em;
+	max-height : 15em;
 }
 
 @mixin reset{
@@ -72,24 +76,37 @@ a, ul{
 	@include reset;
 }
 
+header{
+	padding-left : 1em;
+}
+
+nav{
+	padding : 1em 1em 0;
+
+	select{
+		font-size : 1em;
+		height : 2em;
+	}
+}
+
 .nav-list{
 	display : table;
 	width : 100%;
 	table-layout : fixed;
-	padding : 0;
+	padding : 0 0 1em;
+	
 	li{
 		display : table-cell;
 		text-align : center;
 		a{
-			color : $navy;
+			color : $navy;	
 			text-transform : uppercase;
 			display : block;
-			padding : 16px;
-		}
-		&:hover{
-			background-color : $turquoise;
-			cursor : pointer;
-			a{
+			padding : 1em;
+			border-radius : 1.5em;
+
+			&.selected{
+				background-color : $navy;
 				color : $white;
 				font-weight : 700;
 			}
@@ -97,7 +114,25 @@ a, ul{
 	}
 }
 
-.spinner{
-    transition-duration: 2s;
-	transform: rotateZ(360deg);
+.hidden{
+	display : none;
+}
+
+body{
+	font-size : 2em;
+	article{
+		font-size : .5em;
+	}
+}
+
+@media (min-device-width: 737px){
+	.div-cell{
+		display : table-cell;
+	}
+	body{
+		font-size : 1em;
+		article{
+			font-size : 1em;
+		}
+	}
 }

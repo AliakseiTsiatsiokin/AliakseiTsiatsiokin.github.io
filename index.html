@@ -10,9 +10,9 @@
 		</header>
 		<nav id="navigation" class="cell-8">
 			<ul class="nav-list">
-				<li><a href="#" data-cat="top">Top</a></li>
+				<li><a class="selected" href="#" data-cat="all">All</a></li>
 				<li><a href="#" data-cat="latest">Latest</a></li>
-				<li><a href="#" data-cat="all">All</a></li>
+				<li><a href="#" data-cat="top">Top</a></li>
 			</ul>
 			<label for="search">Please choose news source:</label>
 			<select id="search">
@@ -92,11 +92,10 @@
 		<div class="div-table">
 			<main class="div-cell cell-8">
 				<article id="newsContainer">
-					<h2>Get the latest news with us!</h2>
 				</article>
 			</main>
-			<aside class="div-cell cell-4 panel">
-				<div class="theme-white">
+			<aside class="div-cell cell-4">
+				<div class="theme-white panel">
 					<h2>Additional information</h2>
 					<dl>
 						<dt>resources</dt>
@@ -110,6 +109,7 @@
 			</aside>
 		</div>
 		<footer></footer>
+		<script src="./js/markupCoordinator.js"></script>
 		<script src="./js/adapter.js"></script>
 		<script src="./js/templates.js"></script>
 		<script src="./js/loader.js"></script>

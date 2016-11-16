@@ -8,25 +8,19 @@ class Loader{
 				switch(prop){
 					case 'category' : {
 						if(target[prop] !== value){
-							
 							let allowedValues = ['top', 'latest', 'all'];
 							for(let category of allowedValues){
 								if(value === category){
 									target[prop] = value;
-									self.handleParamChange();
 								}
 							}
-						
 						}
 						return target[prop];
 					}
 					case 'source' : {
-						let prevVal = target[prop];
-						if(value !== prevVal){
+						if(target[prop] !== value){
 							target[prop] = value;
-							if(target.category !== undefined){
-								self.handleParamChange();
-							}
+							self.handleParamChange();
 						}
 						return target[prop];
 					}	
@@ -49,59 +43,40 @@ class Loader{
 		this.sectionTemplate = new NewsSectionTemplate('#newsContainer');
 		this.articles = [];
 
-		this.private.source = 'hacker-news';
 		this.private.apiKey = '6aa9fae56836443c8046fb41032ea9cb';
-		this.private.category = 'top';
+		this.private.category = 'all';
+		this.private.source = 'hacker-news';
 	}
 	generateUrl(category){
 		return `https://newsapi.org/v1/articles?source=${this.private.source}&sortBy=
 			${category ? category : this.private.category}&apiKey=${this.private.apiKey}`;
 	}
 	handleParamChange(){
-	
-		this.sectionTemplate.showSpinner();
-		
 		this.articles = [];
-	
-		switch(this.private.category){
-			case 'all' : {
-				this.fetchNews('top');
-				this.fetchNews('latest', this.setResponse);
-				break;
-			}
-			default : {
-				this.fetchNews(null, this.setResponse);
-			}
-		}
+		this.sectionTemplate.clearContainer();
+		this.fetchNews('top', this.setResponse);
+		this.fetchNews('latest', this.setResponse);
 	}
 	fetchNews(category, callback, ...callbackParams){
-	
-		this.sectionTemplate.showSpinner();
 	
 		fetch(new Request(this.generateUrl(category)), {
 			method : 'GET',
 			mode : 'cors'
 		})
 		.then( response => response.json() )
-		.then( responseObj => {
-			if(responseObj.status === 'error'){
-				this.sectionTemplate.clearContainer()
-				this.sectionTemplate.pasteError(responseObj.message);
-				this.sectionTemplate.render();
-			}else{
-				this.articles = [...this.articles, ...Adapter.parseArticlesResponse(responseObj)];
-				if(callback){
-					callback.call(this, ...callbackParams);
-				}
+		.then(responseObj => {
+			this.articles = Adapter.parseArticlesResponse(responseObj, category);
+			if(callback){
+				callback.call(this, ...callbackParams);
 			}
 		})
 		.catch( err => console.log(err) );
 	}
 	setResponse(){
-		this.sectionTemplate.clearContainer();
 		for(let article of this.articles){
+			article = Adapter.spliceEmptyProperties(article);
 			this.sectionTemplate.populateTemplate(
-				Adapter.spliceEmptyProperties(article)
+				article
 			);
 			this.sectionTemplate.render();
 		}
