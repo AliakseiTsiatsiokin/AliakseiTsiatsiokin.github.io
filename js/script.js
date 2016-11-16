@@ -5,7 +5,7 @@
 			constructor(){}
 			hello(){let a = 'hello';}
 		}
-	}catch{
+	}catch(e){
 		alert('not support');
 	}
 
