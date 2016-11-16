@@ -1,5 +1,14 @@
 (() => {
-	
+
+	try{
+		class A{
+			constructor(){}
+			hello(){let a = 'hello';}
+		}
+	}catch{
+		alert('not support');
+	}
+
 	let loader = new Loader(),
 		navBar = document.getElementById('navigation'),
 		searchDropdown = document.getElementById('search');
